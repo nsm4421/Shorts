@@ -23,17 +23,12 @@ class _FeedListFragmentState extends State<FeedListFragment> {
             });
           }
         },
-        child: ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _feeds.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return FeedItemWidget(_feeds[index]);
-          },
-          separatorBuilder: (BuildContext context, int index) => const Padding(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Divider(),
-          ),
-        ));
+        child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _feeds.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return FeedItemWidget(_feeds[index]);
+            }));
   }
 }
