@@ -5,7 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'chat/impl/open_chat.remote_datasource_impl.dart';
 import 'chat/impl/private_chat_message.remote_datasource_impl.dart';
-import 'feed/impl/like.remote_datasource_impl.dart';
+import 'like/impl/like.remote_datasource_impl.dart';
 import 'user/impl/account.remote_datasource_impl.dart';
 import 'user/impl/auth.remote_datasource_impl.dart';
 import 'feed/impl/feed.remote_datasource_impl.dart';

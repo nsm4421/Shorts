@@ -5,6 +5,6 @@ class CancelLikeOnFeedUseCase {
 
   CancelLikeOnFeedUseCase(this._repository);
 
-  Future<Either<Failure, void>> call(String likeId) =>
-      _repository.deleteLikeById(likeId);
+  Future<Either<Failure, void>> call(String feedId) =>
+      _repository.deleteLike(referenceId: feedId, type : LikeType.feed);
 }

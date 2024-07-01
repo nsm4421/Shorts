@@ -70,9 +70,13 @@ class _FeedItemWidgetState extends State<FeedItemWidget> {
   }
 
   _handleClickFavorite() {
-    context.read<DisplayFeedBloc>().add(_isLike
-        ? DeleteLikeOnFeedEvent(widget._feed)
-        : SendLikeOnFeedEvent(widget._feed));
+    try {
+      context.read<DisplayFeedBloc>().add(_isLike
+          ? DeleteLikeOnFeedEvent(widget._feed)
+          : SendLikeOnFeedEvent(widget._feed));
+    } catch (error) {
+      log(error.toString());
+    }
   }
 
   _handleClickComment() {

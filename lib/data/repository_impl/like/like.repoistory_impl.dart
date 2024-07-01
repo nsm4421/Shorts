@@ -6,7 +6,7 @@ import 'package:my_app/domain/model/like/save_like_request.dto.dart';
 import '../../../core/constant/dto.constant.dart';
 import '../../../core/exception/custom_exception.dart';
 import '../../../core/exception/failure.dart';
-import '../../datasource/feed/impl/like.remote_datasource_impl.dart';
+import '../../datasource/like/impl/like.remote_datasource_impl.dart';
 
 part '../../../domain/repository/like/like.repository.dart';
 
@@ -19,8 +19,7 @@ class LikeRepositoryImpl implements LikeRepository {
 
   @override
   Stream<Iterable<String>> get likeOnFeedStream =>
-      _remoteDataSource.likeOnFeedStream.asyncMap((event) =>
-          event.map((dto) => dto.feedId).filter((feedId) => feedId.isNotEmpty));
+      _remoteDataSource.likeOnFeedStream;
 
   @override
   Future<Either<Failure, void>> sendLike(

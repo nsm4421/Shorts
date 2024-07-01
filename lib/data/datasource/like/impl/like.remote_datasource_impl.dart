@@ -1,5 +1,5 @@
 import 'package:logger/logger.dart';
-import 'package:my_app/domain/model/like/likeOnFeed.dto.dart';
+import 'package:my_app/core/constant/dto.constant.dart';
 import 'package:my_app/domain/model/like/save_like_request.dto.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../core/constant/database.constant.dart';
@@ -27,11 +27,14 @@ class RemoteLikeDataSourceImpl implements RemoteLikeDataSource {
   }
 
   @override
-  Stream<Iterable<LikeOnFeedDto>> get likeOnFeedStream => _client
+  Stream<Iterable<String>> get likeOnFeedStream => _client
       .from(TableName.like.name)
       .stream(primaryKey: ['id'])
       .eq("createdBy", _getCurrentUidOrElseThrow)
-      .asyncMap((event) => event.map(LikeOnFeedDto.fromJson));
+      .asyncMap((event) => event
+          .map(SaveLikeRequestDto.fromJson)
+          .where((dto) => dto.type == LikeType.feed)
+          .map((dto) => dto.referenceId));
 
   @override
   Future<void> saveLike(SaveLikeRequestDto dto) async {
